@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>地軸傾斜，為什麼日出日落會換方向？｜互動教學</title>
+<style>
+:root{font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;color:#17314a;background:#f1f6fa;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}
+.lesson{max-width:1330px;margin:0 auto;padding:22px 22px 50px}
+.hero{border-radius:24px;padding:27px 32px;color:#fff;background:linear-gradient(112deg,#133653 0%,#236e92 100%);position:relative;overflow:hidden;box-shadow:0 12px 30px #18466b1d}
+.hero:after{content:"☀";position:absolute;right:24px;top:-42px;font-size:190px;opacity:.13;pointer-events:none}
+.kicker{font-size:14px;font-weight:800;letter-spacing:.16em;color:#bceaf7}.hero h1{font-size:clamp(24px,3.1vw,40px);line-height:1.36;margin:8px 0}.hero p{margin:0;color:#e7f6fd;font-size:16px;line-height:1.8;max-width:910px}
+.control-panel{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:white;border:1px solid #dce9f1;border-radius:18px;padding:15px 19px;margin:17px 0;box-shadow:0 3px 16px #174d7410}
+.control-label{font-weight:850;font-size:16px}.season-buttons{display:flex;gap:7px;flex-wrap:wrap}.season-buttons button{border:2px solid #dce7ef;border-radius:11px;padding:9px 13px;background:white;color:#36516b;font-weight:750;transition:.2s}
+.season-buttons button[aria-pressed="true"]{background:#163e64;color:white;border-color:#163e64;box-shadow:0 3px 10px #17385a33}
+.season-buttons button:focus-visible,.play:focus-visible,input:focus-visible{outline:3px solid #edb552;outline-offset:2px}
+.tilt-control{display:flex;align-items:center;gap:10px;margin-left:auto;flex-wrap:wrap;min-width:258px;font-size:14px;font-weight:750}
+.tilt-control input{accent-color:#147eaa;width:136px;max-width:40vw}.tilt-value{color:#08658a;min-width:48px;font-weight:900}.tilt-reset{border:1px solid #aecddd;background:#eaf5fc;color:#175878;border-radius:9px;padding:7px 9px;font-weight:750}
+.panel-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px}.panel{min-width:0;background:#fff;border:1px solid #dce9f0;box-shadow:0 3px 18px #2045680e;border-radius:20px;overflow:hidden}
+.panel-head{padding:19px 22px 2px}.panel-head h2{font-size:clamp(19px,2vw,23px);margin:0 0 5px;color:#173c5b}.panel-head p{margin:0;color:#61778b;font-size:13px;line-height:1.6}.globe-svg,.sky-svg{display:block;width:100%;height:auto}.globe-svg{margin-top:12px}.sky-svg{margin:6px 0 0}
+.earth-note{margin:0 20px 20px;background:#edf7fd;color:#1c5677;border-radius:12px;padding:13px 15px;font-size:15px;line-height:1.8;min-height:80px}
+.sky-bottom{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:6px 20px 18px;border-top:1px solid #edf0f3}.play{border:0;background:#125b82;color:white;border-radius:10px;padding:10px 15px;white-space:nowrap;font-weight:800;min-width:110px}.day-range{flex:1;min-width:170px;accent-color:#e9a529}.clock{font-size:14px;font-weight:800;color:#1d5673;min-width:160px;text-align:right}
+.legend{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;padding:4px 15px 13px;font-size:13px;font-weight:850}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.result{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:15px 0}.result-card{background:white;border-radius:16px;padding:16px 17px;border:1px solid #dbe8f0;box-shadow:0 3px 14px #2045680b}.result-card small{color:#657d8d;font-size:13px;font-weight:750}.result-card strong{display:block;margin-top:5px;font-size:clamp(16px,1.7vw,21px);color:#163e60}.result-card span{font-size:13px;line-height:1.7;color:#60768b}
+.conclusion{background:#fff6dd;border:2px solid #f1cf79;padding:18px 22px;border-radius:18px;display:flex;gap:18px;align-items:flex-start}.conclusion .idea{font-size:34px;line-height:1}.conclusion h2{font-size:20px;margin:0 0 6px;color:#714907}.conclusion p{margin:0;line-height:1.9;font-size:15px;color:#624f24}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}.step{background:#e6f1f8;border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.7}.step b{display:block;font-size:16px;color:#185678;margin-bottom:3px}.footnote{font-size:12px;line-height:1.8;color:#687c8c;padding:6px 3px}
+svg text{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif}.sun-pulse{animation:pulse 2.3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes pulse{50%{opacity:.72;transform:scale(1.055)}}
+@media(max-width:950px){.panel-grid{grid-template-columns:1fr}.tilt-control{margin-left:0}.result{grid-template-columns:1fr}.result-card strong{font-size:21px}}
+@media(max-width:550px){.lesson{padding:10px 10px 34px}.hero{padding:20px 18px}.control-panel{padding:13px 12px;gap:10px}.season-buttons button{padding:7px 9px;font-size:13px}.panel-head{padding:15px 14px 0}.sky-bottom{padding:10px 13px 15px}.clock{min-width:auto;text-align:left}.earth-note{margin:0 12px 13px;font-size:13px}.steps{grid-template-columns:1fr}.conclusion{padding:14px;gap:10px}}
+@media(prefers-reduced-motion:reduce){.sun-pulse{animation:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="lesson">
+ <header class="hero">
+  <div class="kicker">給小朋友的互動天文課</div>
+  <h1>地球歪歪的，日出就會搬家？</h1>
+  <p>左邊看「陽光怎麼照到傾斜的地球」，右邊看「臺灣天空中，太陽從哪裡升起、從哪裡落下」。選季節、拖曳太陽，最後把地軸調成 0° 試試看！</p>
+ </header>
+ <section class="control-panel" aria-label="季節與地軸控制">
+  <div class="control-label">① 選擇季節</div>
+  <div class="season-buttons" role="group" aria-label="季節">
+   <button type="button" data-season="spring" aria-pressed="false">🌱 春分</button>
+   <button type="button" data-season="summer" aria-pressed="true">☀️ 夏至</button>
+   <button type="button" data-season="autumn" aria-pressed="false">🍂 秋分</button>
+   <button type="button" data-season="winter" aria-pressed="false">❄️ 冬至</button>
+  </div>
+  <div class="tilt-control"><label for="tilt">② 地軸傾角</label><input type="range" id="tilt" min="0" max="23.5" step="0.5" value="23.5"><output id="tilt-value" class="tilt-value" for="tilt">23.5°</output><button type="button" id="reset-tilt" class="tilt-reset">恢復傾斜</button></div>
+ </section>
+ <section class="panel-grid" aria-label="從地球到天空的對照圖">
+  <article class="panel"><div class="panel-head"><h2>第一張圖｜太陽照向地球</h2><p>地軸相對陽光的角度改變，陽光直射的位置就南北移動。</p></div>
+   <svg class="globe-svg" id="earth-graphic" viewBox="0 0 520 307" role="img" aria-label="太陽從左方照向有傾角的地球，顯示地軸與赤道、陽光直射點">
+    <defs>
+     <clipPath id="earth-circle"><circle cx="365" cy="147" r="80"/></clipPath>
+     <linearGradient id="day-gradient" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#82daf2"/><stop offset="1" stop-color="#1687b9"/></linearGradient>
+     <radialGradient id="sun-gradient"><stop stop-color="#fff8d0"/><stop offset=".7" stop-color="#ffcd55"/><stop offset="1" stop-color="#f2a438"/></radialGradient>
+     <marker id="ray-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#e6a329"/></marker>
+    </defs>
+    <rect x="0" y="0" width="520" height="307" fill="#faffff"/>
+    <g opacity=".14" fill="#2b7097"><circle cx="173" cy="37" r="2"/><circle cx="465" cy="34" r="2"/><circle cx="250" cy="267" r="2"/></g>
+    <g class="sun-pulse"><circle cx="82" cy="147" r="56" fill="#ffd47b" opacity=".19"/><circle cx="82" cy="147" r="40" fill="url(#sun-gradient)" stroke="#f5a734" stroke-width="2"/><g id="sun-rays" stroke="#e6a329" stroke-width="2.8" stroke-linecap="round"><path d="M82 90v-11M82 204v11M25 147H14M139 147h11M42 107l-9-9M122 107l9-9M42 187l-9 9M122 187l9 9"/></g></g>
+    <text x="82" y="238" fill="#ab6a0d" font-size="20" font-weight="850" text-anchor="middle">太陽</text>
+    <g id="ray-lines" stroke="#e6aa37" stroke-width="2.6" marker-end="url(#ray-arrow)"><path d="M145 105H260"/><path d="M145 147H270"/><path d="M145 189H260"/></g>
+    <text x="213" y="84" font-size="16" fill="#b57c13" text-anchor="middle" font-weight="850">平行陽光 →</text>
+    <circle cx="365" cy="147" r="84" fill="#64beec" opacity=".16"/>
+    <circle cx="365" cy="147" r="80" fill="#132d4c" stroke="#246991" stroke-width="1.5"/>
+    <g clip-path="url(#earth-circle)"><rect x="285" y="62" width="80" height="170" fill="url(#day-gradient)"/><path d="M302 114 Q315 89 340 99 L348 119 336 136 318 129 310 147 295 134Z M336 165 Q355 151 353 176 L345 197 328 209 318 188Z" fill="#7fc99d" opacity=".72"/><path d="M394 102Q423 119 411 141L398 155 391 135Z" fill="#28667e" opacity=".5"/><path d="M365 66v162" stroke="#dcf4fb" opacity=".17" stroke-dasharray="3 6"/></g>
+    <g id="equator-line" stroke="#fff4ac" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"></g>
+    <g id="axis-line" stroke="#e74c56" stroke-width="3.5" stroke-linecap="round"></g>
+    <g id="globe-labels" fill="#a2293d" font-size="15" font-weight="850"></g>
+    <circle id="direct-spot" cx="293" cy="147" r="5.7" fill="#ffe46d" stroke="#fff" stroke-width="2.2"/>
+    <path d="M291 147L245 224" stroke="#d09a34" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+    <text x="235" y="241" text-anchor="middle" fill="#9f6b17" font-size="15" font-weight="850">陽光直射點</text>
+    <text id="direct-latitude" x="365" y="282" text-anchor="middle" fill="#1f6182" font-size="18" font-weight="900">直射：北緯 23.5°</text>
+   </svg>
+   <div class="earth-note" id="earth-note" aria-live="polite">夏至：北半球朝向太陽，陽光直射北回歸線。臺灣看到的太陽路徑偏北、白天較長。</div>
+  </article>
+  <article class="panel"><div class="panel-head"><h2>第二張圖｜臺灣的天空（日出 → 日落）</h2><p>以北緯約 25° 為例。橢圓形是四周地平線；你站在中央，北在右、南在左。</p></div>
+   <svg class="sky-svg" id="sky-graphic" viewBox="0 0 960 495" role="img" aria-label="夏至春秋分冬至三條太陽路徑以及日出日落方位，圓點會沿選定路徑移動">
+    <defs><linearGradient id="horizon-gradient" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#e6f6e0"/><stop offset="1" stop-color="#fff6c8"/></linearGradient></defs>
+    <rect x="17" y="8" width="926" height="465" rx="17" fill="#f8fcff"/>
+    <path d="M75 233H885" stroke="#cce3ef" stroke-dasharray="5 6" opacity=".6"/>
+    <ellipse cx="482" cy="316" rx="365" ry="85" fill="url(#horizon-gradient)" stroke="#87a6a3" stroke-width="2"/>
+    <path d="M117 316H847" stroke="#768f8c" stroke-width="2" stroke-dasharray="8 7"/>
+    <g id="sky-paths" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="path-dots"></g>
+    <g id="sun-position"><circle id="sun-halo" cx="482" cy="73" r="22" fill="#ffbd3e" opacity=".2"/><circle id="sky-sun" cx="482" cy="73" r="12" fill="#ffbc43" stroke="#e59c25" stroke-width="2"/><text id="moving-label" x="482" y="43" font-size="16" font-weight="850" text-anchor="middle" fill="#b5760b">太陽</text></g>
+    <circle cx="482" cy="316" r="8" fill="#1b638a" stroke="white" stroke-width="3"/><path d="M482 323v22" stroke="#1b638a" stroke-width="3"/>
+    <text x="497" y="341" fill="#165c7d" font-size="16" font-weight="850">你在這裡</text>
+    <path id="horizon-front" d="M117 316 A365 85 0 0 0 847 316" fill="none" stroke="#7da39a" stroke-width="3"/>
+    <g id="compass" fill="#254f65" font-size="25" font-weight="900"><text x="73" y="323" text-anchor="middle">南</text><text x="896" y="323" text-anchor="middle">北</text><text x="482" y="465" text-anchor="middle">東</text><text x="482" y="220" text-anchor="middle">西</text></g>
+    <g id="rise-set-labels" font-size="13" font-weight="850" text-anchor="middle"></g>
+    <g id="star-group"><path d="M813 186l4 12 12 4-12 4-4 12-4-12-12-4 12-4Z" fill="#edc354" stroke="#c79b28"/><text x="833" y="183" font-size="14" fill="#8c752f" font-weight="800" text-anchor="middle">北極星</text></g>
+    <text x="131" y="39" font-size="14" fill="#6b8292" font-weight="700">天空上方</text>
+    <text x="132" y="453" font-size="13" fill="#69839a">近處：日出（東方）</text><text x="724" y="239" font-size="13" fill="#69839a">遠處：日落（西方）</text>
+   </svg>
+   <div class="legend" aria-label="軌跡圖例"><span><i class="dot" style="background:#e1a52d"></i>夏至</span><span><i class="dot" style="background:#209c99"></i>春分、秋分</span><span><i class="dot" style="background:#608ad8"></i>冬至</span></div>
+   <div class="sky-bottom"><button type="button" class="play" id="play" aria-label="播放或暫停太陽運動">▶ 播放一天</button><input type="range" id="day-progress" class="day-range" min="0" max="100" step="0.5" value="0" aria-label="拖曳一天中的太陽位置"><output id="clock" class="clock" for="day-progress">從日出開始</output></div>
+  </article>
+ </section>
+ <section class="result" aria-label="日出日落結果">
+  <div class="result-card"><small>🌅 日出方位</small><strong id="sunrise-text">東偏北約 26°</strong><span id="sunrise-detail">正東的北側</span></div>
+  <div class="result-card"><small>🌇 日落方位</small><strong id="sunset-text">西偏北約 26°</strong><span id="sunset-detail">正西的北側</span></div>
+  <div class="result-card"><small>⌛ 白天長度（理論近似）</small><strong id="daylength-text">約 13 小時 36 分</strong><span>忽略大氣折射、地形與太陽圓盤大小</span></div>
+ </section>
+ <section class="conclusion"><div class="idea">💡</div><div><h2 id="conclusion-title">觀察重點：夏天的日出、日落都偏北</h2><p id="conclusion-text">因為地軸傾斜，夏至北半球朝向太陽，太陽在天空中的整條路徑向北移。於是從東偏北升起、往西偏北落下。冬天則相反；春分和秋分接近正東升、正西落。</p></div></section>
+ <section class="steps" aria-label="三個原因"><div class="step"><b>第一步｜地軸傾斜</b>地球自轉軸大約傾斜 23.5°，公轉時指向大致不變。</div><div class="step"><b>第二步｜陽光照射位置改變</b>夏天直射北半球，冬天直射南半球；春分、秋分直射赤道。</div><div class="step"><b>第三步｜日出日落方向跟著變</b>地球每天仍往同一方向自轉，但太陽跨越地平線的位置會往北或往南移。</div></section>
+ <footer class="footnote">教學示意：以臺灣北緯 25°、理想水平地平線計算；天空圖為方便辨認方向的立體投影，並非按真實透視比例。地球圖把「太陽固定在左側」當作比較基準，因此季節切換時地軸畫出的相對角度會改變；真實地軸在太空中的指向幾乎固定，變的是地球公轉位置。日出與日落方位受緯度、季節、地形與大氣影響，圖中時間是近似太陽時，不是臺灣標準時間。</footer>
+</main>
+<script>
+(()=>{
+'use strict';
+const RAD=Math.PI/180, LAT=25*RAD, COLORS={summer:'#e1a52d',equinox:'#209c99',winter:'#608ad8'};
+const seasons={spring:{label:'春分',factor:0},summer:{label:'夏至',factor:1},autumn:{label:'秋分',factor:0},winter:{label:'冬至',factor:-1}};
+let season='summer', tilt=23.5, progress=0, timer=null;
+const el=id=>document.getElementById(id);
+const svgEl=(name,attrs={},parent)=>{const node=document.createElementNS('http://www.w3.org/2000/svg',name);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,String(v)));if(parent)parent.appendChild(node);return node};
+const fmtDeg=num=>Number(num.toFixed(1)).toString();
+const declination=(name)=>seasons[name].factor*tilt*RAD;
+const hourAngle=delta=>Math.acos(Math.max(-1,Math.min(1,-Math.tan(LAT)*Math.tan(delta))));
+const point=(delta,H)=>{const e=-Math.cos(delta)*Math.sin(H),n=Math.cos(LAT)*Math.sin(delta)-Math.sin(LAT)*Math.cos(delta)*Math.cos(H),u=Math.sin(LAT)*Math.sin(delta)+Math.cos(LAT)*Math.cos(delta)*Math.cos(H);return{x:482+n*365,y:316+e*85-u*255}};
+const pathFor=delta=>{const limit=hourAngle(delta);return Array.from({length:101},(_,i)=>{const p=point(delta,-limit+2*limit*i/100);return `${i?'L':'M'}${p.x.toFixed(2)},${p.y.toFixed(2)}`}).join(' ')};
+function updateEarth(){
+ const alpha=seasons[season].factor*tilt*RAD, r=80,cx=365,cy=147;
+ const ax={x:-Math.sin(alpha),y:-Math.cos(alpha)},eq={x:Math.cos(alpha),y:-Math.sin(alpha)};
+ el('axis-line').innerHTML='';el('equator-line').innerHTML='';el('globe-labels').innerHTML='';
+ svgEl('line',{x1:cx-ax.x*109,y1:cy-ax.y*109,x2:cx+ax.x*109,y2:cy+ax.y*109},el('axis-line'));
+ svgEl('line',{x1:cx-eq.x*77,y1:cy-eq.y*77,x2:cx+eq.x*77,y2:cy+eq.y*77},el('equator-line'));
+ svgEl('text',{x:cx+ax.x*118,y:cy+ax.y*118-3,'text-anchor':'middle'},el('globe-labels')).textContent='北極';
+ svgEl('text',{x:cx-ax.x*113,y:cy-ax.y*113+17,'text-anchor':'middle'},el('globe-labels')).textContent='南極';
+ const latitude=seasons[season].factor*tilt;
+ el('direct-latitude').textContent=latitude>0?`直射：北緯 ${fmtDeg(latitude)}°`:latitude<0?`直射：南緯 ${fmtDeg(-latitude)}°`:'直射：赤道（0°）';
+ const tiltedZero=tilt===0;
+ const note=tiltedZero?'地軸調成 0°：三個季節的太陽直射點都在赤道，三條太陽路徑會重疊；日出正東，日落正西。':latitude>0?`${seasons[season].label}：北半球朝向太陽，陽光直射北緯 ${fmtDeg(latitude)}°；臺灣太陽走得較高、白天較長。`:latitude<0?`${seasons[season].label}：北半球背向太陽，陽光直射南緯 ${fmtDeg(-latitude)}°；臺灣太陽走得較低、白天較短。`:`${seasons[season].label}：太陽直射赤道，臺灣看到太陽大約從正東升起、正西落下。`;
+ el('earth-note').textContent=note;
+}
+function updateSky(){
+ const group=el('sky-paths'),dots=el('path-dots'),labels=el('rise-set-labels');group.innerHTML='';dots.innerHTML='';labels.innerHTML='';
+ ['winter','equinox','summer'].forEach(key=>{
+  const delta=key==='equinox'?0:declination(key),selected=key===(seasons[season].factor===0?'equinox':season),limit=hourAngle(delta);
+  svgEl('path',{d:pathFor(delta),stroke:COLORS[key],'stroke-width':selected?5:2.7,opacity:selected?1:0.44,'stroke-dasharray':selected?'none':'7 6'},group);
+  const rise=point(delta,-limit),set=point(delta,limit),noon=point(delta,0);
+  [rise,set].forEach(pt=>svgEl('circle',{cx:pt.x,cy:pt.y,r:selected?7.1:4.7,fill:COLORS[key],stroke:'#fff','stroke-width':selected?2.5:1.5,opacity:selected?1:.65},dots));
+  if(selected){
+   const a=svgEl('text',{x:rise.x,y:rise.y+25,'text-anchor':'middle','font-size':17,'font-weight':900,fill:COLORS[key]},labels);a.textContent='日出';
+   const b=svgEl('text',{x:set.x,y:set.y-13,'text-anchor':'middle','font-size':17,'font-weight':900,fill:COLORS[key]},labels);b.textContent='日落';
+   const c=svgEl('text',{x:noon.x-7,y:Math.max(30,noon.y-19),'text-anchor':'middle','font-size':17,'font-weight':850,fill:COLORS[key]},labels);c.textContent=seasons[season].label;
+  }
+ });
+ const delta=declination(season), limit=hourAngle(delta), p=point(delta,-limit+2*limit*progress/100);
+ el('sun-position').setAttribute('transform',`translate(${p.x-482} ${p.y-73})`);
+ const daylight=2*limit/RAD/15, solarHour=12-daylight/2+daylight*progress/100;
+ const hm=solarHour*60, hours=Math.floor(hm/60), minutes=Math.round(hm%60), clockHours=hours+(minutes===60?1:0),clockMinutes=minutes===60?0:minutes;
+ el('clock').textContent=`約 ${String(clockHours).padStart(2,'0')}:${String(clockMinutes).padStart(2,'0')}（太陽時）`;
+ el('moving-label').textContent=progress<2?'日出':progress>98?'日落':progress>46&&progress<54?'正午':'太陽';
+ const compassShift=Math.asin(Math.max(-1,Math.min(1,Math.sin(delta)/Math.cos(LAT))))/RAD;
+ const shiftAbs=fmtDeg(Math.abs(compassShift));
+ el('sunrise-text').textContent=Math.abs(compassShift)<.05?'正東':`東偏${compassShift>0?'北':'南'}約 ${shiftAbs}°`;
+ el('sunset-text').textContent=Math.abs(compassShift)<.05?'正西':`西偏${compassShift>0?'北':'南'}約 ${shiftAbs}°`;
+ el('sunrise-detail').textContent=Math.abs(compassShift)<.05?'從東方地平線升起':`比正東更靠${compassShift>0?'北':'南'}邊`;
+ el('sunset-detail').textContent=Math.abs(compassShift)<.05?'在西方地平線落下':`比正西更靠${compassShift>0?'北':'南'}邊`;
+ const dayMin=Math.round(daylight*60);el('daylength-text').textContent=`約 ${Math.floor(dayMin/60)} 小時 ${String(dayMin%60).padStart(2,'0')} 分`;
+ const title=el('conclusion-title'),text=el('conclusion-text');
+ if(tilt===0){title.textContent='實驗發現：沒有地軸傾斜，三條路徑重疊！';text.textContent='把地軸設為 0°，再切換夏至、春秋分、冬至。你會發現日出都在正東，日落都在正西，而且白天長度一樣。這證明季節性的方位差與地軸傾斜有關。'}
+ else if(seasons[season].factor===1){title.textContent='觀察重點：夏至，日出與日落都偏北';text.textContent='夏至北半球朝向太陽，太陽整天的路徑偏北、正午也較高，所以太陽從東偏北升起，往西偏北落下。'}
+ else if(seasons[season].factor===-1){title.textContent='觀察重點：冬至，日出與日落都偏南';text.textContent='冬至北半球背向太陽，太陽走比較低、白天比較短，所以太陽從東偏南升起，往西偏南落下。'}
+ else{title.textContent='觀察重點：春分、秋分，約正東升、正西落';text.textContent='春分和秋分，陽光直射赤道，太陽在臺灣約從正東升起、正西落下，白天和黑夜各接近 12 小時。'}
+}
+function render(){el('tilt-value').textContent=`${fmtDeg(tilt)}°`;document.querySelectorAll('[data-season]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.season===season)));updateEarth();updateSky()}
+function pause(){if(timer){clearInterval(timer);timer=null}el('play').textContent='▶ 播放一天';el('play').setAttribute('aria-label','播放一天的太陽運動')}
+document.querySelectorAll('[data-season]').forEach(btn=>btn.addEventListener('click',()=>{season=btn.dataset.season;progress=0;el('day-progress').value='0';pause();render()}));
+el('tilt').addEventListener('input',e=>{tilt=Number(e.target.value);render()});
+el('reset-tilt').addEventListener('click',()=>{tilt=23.5;el('tilt').value='23.5';render()});
+el('day-progress').addEventListener('input',e=>{progress=Number(e.target.value);render()});
+el('play').addEventListener('click',()=>{if(timer){pause();return}if(progress>=99.5)progress=0;el('play').textContent='⏸ 暫停';el('play').setAttribute('aria-label','暫停太陽運動');timer=setInterval(()=>{progress=Math.min(100,progress+0.5);el('day-progress').value=String(progress);updateSky();if(progress>=100)pause()},45)});
+render();
+})();
+</script>
+</body>
+</html>
